@@ -9,7 +9,8 @@ interface UserItemProps {
 }
 
 
-const UserItem: React.FC<UserItemProps> = ({ users, onDelete, onEdit }) => {
+const UserItem: React.FC<UserItemProps> = (props) => {
+    const { users, onDelete, onEdit } = props;
     const { id, name, company } = users;
     const { catchPhrase } = company;
 
@@ -17,9 +18,9 @@ const UserItem: React.FC<UserItemProps> = ({ users, onDelete, onEdit }) => {
         <li key={id} className="border-solid border-2 border-gray-500 p-8 m-8 flex justify-between items-center rounded-md">
             <div className="group relative mr-5">
                 <h3 className="text-lg font-semibold leading-6 text-break">
-                    Title: {name}
+                    {`Title: ${name}`}
                 </h3>
-                <p className="mt-1 line-clamp-3 text-sm leading-6 text-gray-600 text-break">Description: {catchPhrase}</p>
+                <p className="mt-1 line-clamp-3 text-sm leading-6 text-gray-600 text-break">{`Description: ${catchPhrase}`}</p>
             </div>
             <div className="flex flex-col items-end">
                 <img

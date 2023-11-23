@@ -10,7 +10,8 @@ interface ModalProps {
     onAddUser: (title: string, description: string) => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ modalVisibile, selectedItem, isEditing, onClose, onUpdateUser, onAddUser }) => {
+const Modal: React.FC<ModalProps> = (props) => {
+    const { modalVisibile, selectedItem, isEditing, onClose, onUpdateUser, onAddUser } = props;
 
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("")
@@ -40,7 +41,7 @@ const Modal: React.FC<ModalProps> = ({ modalVisibile, selectedItem, isEditing, o
             setTitle(selectedItem.name)
             setDescription(selectedItem.company.catchPhrase)
         }
-    }, [selectedItem,isEditing])
+    }, [selectedItem, isEditing])
 
     if (!modalVisibile) {
         return null;

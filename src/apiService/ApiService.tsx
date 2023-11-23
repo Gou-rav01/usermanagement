@@ -6,7 +6,11 @@ class ApiService {
     async callApi(url: string, options?: RequestInit) {
         try {
             const response = await fetch(url, options);
-            return response.json();
+            if (response.status === 200 || response.status === 201) {
+                return response.json();
+            } else {
+                return null;
+            }
         } catch (error) {
             console.error(error);
         }

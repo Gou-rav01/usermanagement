@@ -44,3 +44,16 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Github repository
+https://github.com/Gou-rav01/usermanagement/tree/master
+
+## Instructions to run the project
+Go to the above git repository and clone the project in your system, then open terminal in your project directory and run npm install and then npm start.
+
+## Netlify Project URL
+https://incomparable-crepe-3d0320.netlify.app/
+
+
+## ADDITIONAL NOTES
+If user add a new user and try to update it the api gets failed, we could have managed that locally but we had to use the data coming from mock api

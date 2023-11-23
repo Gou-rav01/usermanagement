@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import UserItem from './components/UserItem';
-import Dropdown from './components/DropDown';
+import Dropdown, { SortBy } from './components/DropDown';
 import Modal from './components/Modal';
 import apiService from './apiService/ApiService';
 import DeleteModal from './components/DeleteModal';
@@ -53,21 +53,25 @@ function App() {
       console.error("No selected item");
       return
     };
+
     setIsLoading(true)
     setIsEditing(false)
     setModalVisible(false)
     const updatedUserResponse = await apiService.updateUser(selectedItem.id, title, description)
     setIsLoading(false)
+
     if (!updatedUserResponse) {
       console.error("Update user API call failed");
       return
     }
+
     const newUserData = userData.map(user => {
       if (user.id === selectedItem.id) {
         return updatedUserResponse;
       }
       return user;
     });
+
     setUserData(newUserData)
   }
 
@@ -76,6 +80,7 @@ function App() {
       console.error("No selected item");
       return
     };
+
     setIsLoading(true)
     setDeleteModalVisible(false);
     await apiService.deleteUser(selectedItem.id);
@@ -102,7 +107,7 @@ function App() {
 
   const ondropDownSelected = (value: number) => {
     const sortedData = [...userData].sort((a: User, b: User) => {
-      if (value === 1) {
+      if (value === SortBy.ATOZ) {
         return a.name.localeCompare(b.name);
       } else {
         return b.name.localeCompare(a.name);

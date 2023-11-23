@@ -1,6 +1,17 @@
-import { useState } from "react"
+import { useState } from "react";
 
-const Dropdown = ({ onSelected }: { onSelected: (value: number) => void }) => {
+export enum SortBy {
+    ATOZ = 1,
+    ZTOA = 2
+}
+
+interface DropDownProps { 
+    onSelected: (value: number) => void;
+ }
+
+const Dropdown: React.FC<DropDownProps> = (props) => {
+    const { onSelected } = props;
+    
     const [isDropdownVisible, setIsDropdownVisible] = useState(false)
 
     const handleSelectedFilter = (value: number) => {
@@ -28,8 +39,8 @@ const Dropdown = ({ onSelected }: { onSelected: (value: number) => void }) => {
             {isDropdownVisible && (
                 <div className="absolute left-10 mt-10 bg-white border rounded shadow-md">
                     <ul style={{ width: 140 }}>
-                        <li className="p-3 border-b border-gray-300"><button onClick={() => handleSelectedFilter(1)}>A-Z</button></li>
-                        <li className="p-3"><button onClick={() => handleSelectedFilter(2)}>Z-A</button></li>
+                        <li className="p-3 border-b border-gray-300"><button onClick={() => handleSelectedFilter(SortBy.ATOZ)}>A-Z</button></li>
+                        <li className="p-3"><button onClick={() => handleSelectedFilter(SortBy.ZTOA)}>Z-A</button></li>
                     </ul>
                 </div>
             )}
