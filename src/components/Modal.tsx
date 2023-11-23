@@ -40,7 +40,7 @@ const Modal: React.FC<ModalProps> = ({ modalVisibile, selectedItem, isEditing, o
             setTitle(selectedItem.name)
             setDescription(selectedItem.company.catchPhrase)
         }
-    }, [selectedItem])
+    }, [selectedItem,isEditing])
 
     if (!modalVisibile) {
         return null;

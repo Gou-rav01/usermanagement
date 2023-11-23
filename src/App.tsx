@@ -3,7 +3,7 @@ import './App.css';
 import UserItem from './components/UserItem';
 import Dropdown from './components/DropDown';
 import Modal from './components/Modal';
-import ApiService from './apiService/ApiService';
+import apiService from './apiService/ApiService';
 import DeleteModal from './components/DeleteModal';
 import Loader from './components/Loader';
 
@@ -27,7 +27,7 @@ function App() {
 
   const getUserData = async () => {
     setIsLoading(true)
-    const userResponse = await ApiService.getUserData();
+    const userResponse = await apiService.getUserData();
     setIsLoading(false)
     if (!userResponse) {
       console.error("Get user API call failed");
@@ -39,7 +39,7 @@ function App() {
   const onAddUser = async (title: string, description: string) => {
     setModalVisible(false)
     setIsLoading(true)
-    const addUserResponse = await ApiService.addUser(title, description);
+    const addUserResponse = await apiService.addUser(title, description);
     setIsLoading(false)
     if (!addUserResponse) {
       console.error("Add user API call failed");
@@ -56,7 +56,7 @@ function App() {
     setIsLoading(true)
     setIsEditing(false)
     setModalVisible(false)
-    const updatedUserResponse = await ApiService.updateUser(selectedItem.id, title, description)
+    const updatedUserResponse = await apiService.updateUser(selectedItem.id, title, description)
     setIsLoading(false)
     if (!updatedUserResponse) {
       console.error("Update user API call failed");
@@ -78,7 +78,7 @@ function App() {
     };
     setIsLoading(true)
     setDeleteModalVisible(false);
-    await ApiService.deleteUser(selectedItem.id);
+    await apiService.deleteUser(selectedItem.id);
     setIsLoading(false)
     setUserData(userData.filter((user: User) => user.id !== selectedItem.id))
     setSelectedItem(null);
@@ -158,7 +158,7 @@ function App() {
           />
         </div>
       </div>
-      <ul role="list">
+      <ul>
         {usersList()}
       </ul>
       <Modal
